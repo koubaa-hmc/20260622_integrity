@@ -1,0 +1,443 @@
+\documentclass{integrity} % Switched from integrity to standard beamer class
+
+% --- PACKAGES ---
+\usepackage[english]{babel} % Set language
+
+% --- BEAMER THEME AND STYLE ---
+% \usetheme{Madrid} % Using a standard, clean theme
+% \usecolortheme{default}
+% \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+% \setbeamerfont{block title}{size=\normalsize, series=\bfseries}
+
+% --- METADATA ---
+\title{From Data Integrity to FAIR Principles}
+\subtitle{An Interactive Learning Experience for RDM}
+\author{Helmholtz Metadata Collaboration (HMC) \& KIT}
+\institute{Research Data Management Training}
+\date{20. November, 2025}
+
+% The \titlegraphic command was removed as it depends on the custom class.
+% You can manually add logos to the title frame if needed using \includegraphics.
+
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% --- AGENDA ---
+\begin{frame}{Our Agenda: A 2-Day Learning Experience}
+    \begin{block}{How We'll Work}
+        This is an \textbf{interactive} workshop. The slides contain prompts, activities, and discussions. Our goal is not just to \emph{list} objectives, but to \emph{achieve} them together. We will use \textbf{Discussion, Think-Pair-Share, and Workshops}.
+    \end{block}
+
+    \begin{columns}
+        \column{.5\textwidth}
+        \textbf{Day 1: Foundations \& Operations}
+        \begin{itemize}
+            \item Part 1: From Data Integrity to FAIR
+            \item Part 2: The Planning Phase (DMPs)
+            \item Part 3: RDM in Research Operations
+        \end{itemize}
+        
+        \column{.5\textwidth}
+        \textbf{Day 2: Metadata in Practice}
+        \begin{itemize}
+            \item Part 4: Metadata Serialisation
+            \item Part 5: Semantics \& Vocabularies
+            \item Part 6: Publishing Your Metadata
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+% ===================================================================
+% DAY 1 - PART 1: From Data Integrity to FAIR Principles
+% ===================================================================
+\section{Intro: Integrity to FAIR}
+
+\begin{frame}{Day 1 - Part 1: From Data Integrity to FAIR}
+    \begin{block}{Our Goal}
+        By the end of this module, we will be able to connect the core ethical duty of \textbf{Data Integrity} to the practical framework of the \textbf{FAIR Principles}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Warm-Up: Defining Our Terms}
+    \begin{block}{Group Discussion (10 min)}
+        In your own words...
+        \begin{itemize}
+            \item What is \textbf{Data Integrity}? \pause (Hint: Think accuracy, completeness, and consistency)
+            \pause
+            \item What are the four pillars of the \textbf{FAIR} acronym (F, A, I, R)?
+            \pause
+            \item \textbf{List} three Guidelines from the DFG Code of Conduct concerning Data Integrity.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Connecting the Dots: Integrity $\rightarrow$ Reusability}
+    \begin{block}{Think-Pair-Share (10 min)}
+        \textbf{Scenario:} A researcher publishes data with poor integrity (e.g., missing labels, un-logged changes).
+        \pause
+        \begin{itemize}
+            \item How does this break the \textbf{Reusability} ('R') principle? (\textbf{Explain} the causal relationship.)
+            \pause
+            \item \textbf{Explain} how adhering to the FAIR Principles is crucial to reach accordance with the DFG guidelines.
+        \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{Our Goal}
+        To \textbf{explain} this causal relationship: \textbf{No Integrity $\rightarrow$ No Reusability}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Activity: The Concordance Checklist}
+    \begin{block}{Activity: Write a Checklist (15 min)}
+        You are helping a new researcher.
+        \pause
+        \textbf{Task:} Draft a 5-point checklist to help them assess their own concordance with the guide lines.
+        \pause
+        \textbf{Focus:} \textbf{Apply} data validation and cleaning techniques (e.g., scripting checks, normalization) to ensure data integrity.
+        \begin{itemize}
+            \item \pause Example: "Is there a script check for normalization?"
+            \item \pause Example: "Have I checked for consistency across datasets?"
+        \end{itemize}
+        \pause
+        \textbf{Goal:} \textbf{Write} a checklist to help researchers assess their concordance.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Discussion: Authenticity vs. Accessibility}
+    \begin{block}{Discussion (10 min)}
+        A Persistent Identifier (PID) serves both Data Integrity and FAIR.
+        \pause
+        \textbf{Task:} \textbf{Differentiate} between the technical requirements for guaranteeing data \textbf{Authenticity} (Integrity) versus data \textbf{Accessibility} (FAIR).
+        \pause
+        \textbf{Analyze} how PIDs serve both functions.
+        \pause
+        \textbf{Identify} criteria of publication platforms and \textbf{describe} the importance of the find-ability-degree in selecting where to publish.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Case Study: Data Storage Appraisal}
+    \begin{block}{Personal Evaluation (10 min)}
+        Think about a current data storage system you use.
+        \pause
+        \textbf{Task:} \textbf{Appraise} it against two main criteria:
+        \begin{enumerate}
+            \item \pause Criteria for long-term \textbf{Data Security} (Integrity).
+            \item \pause Technical requirements for \textbf{machine accessibility} ('A' of FAIR).
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Challenge: Developing a Metadata Standard}
+    \begin{block}{Workshop: Develop a Standard (15 min)}
+        \textbf{Task:} \textbf{Develop} a comprehensive, integrity-focused \textbf{Metadata Standard} for your project.
+        \pause
+        \textbf{Requirement:} When implemented, this standard must ensure the resulting data and documentation will meet all four \textbf{FAIR principles}.
+        \pause
+        \textbf{Distinguish} different types of interoperability (The five stars) and explain how your standard addresses them.
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 1 - PART 2: Implementing The FAIR-Principles - Planing Phase
+% ===================================================================
+\section{Planning: The DMP}
+
+\begin{frame}{Day 1 - Part 2: The Planning Phase}
+    \begin{block}{Our Goal}
+        To master the \textbf{Data Management Plan (DMP)} as our primary tool for *planning* FAIR implementation, using the \textbf{RDMO} tool.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Activity: RDMO Treasure Hunt}
+    \begin{block}{Activity: Log into RDMO (15 min)}
+        \textbf{Task:} Log into the RDMO instance. Create a new dummy project.
+        \pause
+        \textbf{Challenge:} \textbf{Identify} the specific RDMO question categories (e.g., \emph{Metadata}, \emph{Documentation}, \emph{Long-term Preservation}) that correspond directly to each of the four FAIR principles.
+        \begin{itemize}
+            \item \pause Findable (F) $\rightarrow$ ?
+            \item \pause Accessible (A) $\rightarrow$ ?
+            \item \pause Interoperable (I) $\rightarrow$ ?
+            \item \pause Reusable (R) $\rightarrow$ ?
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{The Importance of Finding and Interoperability}
+    \begin{block}{Discussion (10 min)}
+        \textbf{Findable (F):} \textbf{Explain} \emph{why} addressing the 'F' principle is critical during the data collection and metadata creation phase.
+        \pause
+        \textbf{Interoperable (I):} \textbf{Explain} how the structured output format of the RDMO tool inherently supports the \textbf{Interoperability} ('I') of the Data Management Plan itself.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: PID \& License Strategy}
+    \begin{block}{Workshop: Determine and Justify (20 min)}
+        \textbf{Task 1: PIDs}
+        \begin{itemize}
+            \item \textbf{Determine} the appropriate persistent identifier (DOI, Handle, ARK) to be used.
+            \item \textbf{Determine} and input the required \textbf{Persistent Identifier (PID) strategy} directly into the relevant RDMO field.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: Licenses}
+        \begin{itemize}
+            \item \textbf{Distinguish} between an \emph{open} license (like CC-BY) and a \emph{restrictive} license (like CC-BY-NC-ND).
+            \item \textbf{Analyse} the impact of each on the 'R' (Reusable) principle.
+            \item \textbf{Justify} the selection of a specific \textbf{data access restriction model} within RDMO's 'Access' section, balancing 'A' with legal requirements.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Appraisal and Generation}
+    \begin{block}{Activity: Finalizing the DMP (15 min)}
+        \textbf{Task 1: Justification}
+        \begin{itemize}
+            \item \textbf{Justify} the selection of a specific discipline-specific metadata standard (e.g., Dublin Core, MODS) over a general standard, using \textbf{Interoperability} criteria.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: Appraisal}
+        \begin{itemize}
+            \item \textbf{Appraise} a draft DMP generated by RDMO against the DFG's "Checklist for Handling of Research Data" to ensure the plan adequately secures the \textbf{Reusability} ('R') of the planned data.
+        \end{itemize}
+        \pause
+        \textbf{Goal:} \textbf{Generate} a complete, funder-compliant Data Management Plan (DMP) using the \textbf{RDMO tool}.
+    \end{block}
+\end{frame}
+
+
+% ===================================================================
+% DAY 1 - PART 3: Integrating RDM in Research Operation
+% ===================================================================
+\section{Operations: RDM in Practice}
+
+\begin{frame}{Day 1 - Part 3: RDM in Research Operations}
+    \begin{block}{Our Goal}
+        A plan is useless without action. We will learn to integrate RDM (ELNs, Git, Pipelines) into our \textbf{daily research operations}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Activity: ELN Documentation}
+    \begin{block}{Activity: Mandatory Records (15 min)}
+        \textbf{Task 1: Project Closure}
+        \begin{itemize}
+            \item \textbf{List} the mandatory data records (e.g., metadata files, raw data, analysis scripts) required for project closure according to institutional RDM policy.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: Acquisition}
+        \begin{itemize}
+            \item \textbf{Identify} the mandatory metadata fields (e.g., sample ID, instrument ID, timestamp) that must be captured and logged in the \textbf{Electronic Lab Notebook (ELN)} upon initial data acquisition.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Traceability and Automation}
+    \begin{block}{Discussion (15 min)}
+        \textbf{Access Controls:} \textbf{Summarise} the differences in data access controls (e.g., restricted vs. open) and \textbf{explain} how these choices impact the operational security workflow during the research phase.
+        \pause
+        \textbf{Automation (ELN \& Registry):} \textbf{Illustrate} how connecting an \textbf{Instrument Registry} (or inventory) to the ELN automatically fulfils the 'F' (Findable) and 'I' (Interoperable) principles by linking data to certified instrument calibration records.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: Version Control and Data Streams}
+    \begin{block}{Workshop: Hands-On Traceability (25 min)}
+        \textbf{Task 1: Execution}
+        \begin{itemize}
+            \item \textbf{Execute} the process of version control (e.g., using Git) on analysis scripts and associated documentation, ensuring \textbf{traceability} of all research operations.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: Configuration}
+        \begin{itemize}
+            \item \textbf{Configure} a \textbf{message broker} (e.g., RabbitMQ, Kafka) topic or queue to receive, timestamp, and route data streams originating from a specific laboratory instrument (simulated).
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Troubleshooting the Pipeline}
+    \begin{block}{Scenario: Data Annotation and Troubleshooting (15 min)}
+        \textbf{Differentiation:} \textbf{Differentiate} between data annotation methods suitable for \emph{qualitative} data (e.g., coding schemas) and those for \emph{quantitative} data (e.g., controlled vocabularies). \textbf{Analyze} their respective impacts on data quality and interoperability.
+        \pause
+        \textbf{Troubleshooting:} \textbf{Troubleshoot} a data pipeline error by \textbf{analyzing} the message broker's log files to locate where the data structure was altered between instrument output and ELN ingestion.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Final Activity: Workflow Design}
+    \begin{block}{Activity: Compare, Assess, and Design (15 min)}
+        \textbf{Comparison:} \textbf{Compare} and \textbf{evaluate} the data integrity of two data collection methods: 1) manual entry into a spreadsheet versus 2) automated capture via a \textbf{message broker pipeline}. \textbf{Justify} the superior method based on \textbf{verifiability} criteria.
+        \pause
+        \textbf{Design:} \textbf{Design} a resilient, end-to-end RDM workflow for data collection that starts with an instrument, passes through a \textbf{message broker} for standardisation, and deposits fully documented raw data directly into the \textbf{ELN}.
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 4: Recording and Transforming Metadata, Serialisation
+% ===================================================================
+\section{Metadata: Serialization}
+
+\begin{frame}{Day 2 - Part 4: Metadata Serialisation}
+    \begin{block}{Our Goal}
+        We will focus on the *structure* of metadata. It's not just *what* you record, but *how* you encode it (XML, JSON, etc.).
+    \end{block}
+\end{frame}
+
+\begin{frame}{Warm-Up: Structural Differences}
+    \begin{block}{Group Brainstorm (10 min)}
+        \textbf{Recall} the core components of a minimal metadata standard such as \textbf{Dublin Core} (e.g., Creator, Date, Title, Keywords).
+        \pause
+        \textbf{Recall} the structural differences between common metadata serialization formats, such as \textbf{XML}, \textbf{JSON}, and \textbf{CSV}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Differentiation and Annotation}
+    \begin{block}{Discussion and Workshop (20 min)}
+        \textbf{Differentiation:}
+        \begin{itemize}
+            \item \textbf{Differentiate} between \textbf{descriptive metadata} (what the data is) and \textbf{technical metadata} (how the data was created).
+            \item \textbf{Differentiate} between the role of a \textbf{metadata schema} (defining structure) and a \textbf{serialisation format} (encoding structure).
+        \end{itemize}
+        \pause
+        \textbf{Annotation:}
+        \begin{itemize}
+            \item \textbf{Annotate} a raw dataset file by applying a selected minimal metadata schema (e.g., using \textbf{Dublin Core}).
+            \item \textbf{Export} the result in a specified serialisation format (e.g., JSON).
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Comparison and Transformation}
+    \begin{block}{Activity (15 min)}
+        \textbf{Comparison:} \textbf{Compare} two different serialization formats (e.g., XML vs. JSON) for the same dataset. \textbf{Analyze} their respective efficiencies in terms of \textbf{machine parsing} and \textbf{storage overhead}.
+        \pause
+        \textbf{Justification:} \textbf{Justify} the selection of a specific \textbf{serialization format} for a project based on the constraints of the intended data \textbf{pipeline} or repository (e.g., selecting JSON-LD for web environments).
+    \end{block}
+\end{frame}
+
+\begin{frame}{Final Activity: Schema Transformation}
+    \begin{block}{Workshop: Transformation (10 min)}
+        \textbf{Task:} \textbf{Transform} a project's internal, proprietary metadata scheme into a \textbf{standardized serialization format} (e.g., using a dedicated parsing script or \textbf{XSLT} transformation) that complies with repository requirements.
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 5: Using Standards and Vocabularies
+% ===================================================================
+\section{Metadata: Semantics}
+
+\begin{frame}{Day 2 - Part 5: Semantics \& Vocabularies}
+    \begin{block}{Our Goal}
+        It's not enough for machines to *read* data. They must *understand* it. This is \textbf{Semantics}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Knowledge Systems and Interoperability}
+    \begin{block}{Discussion (15 min)}
+        \textbf{Systems:} \textbf{List} three examples of knowledge organisation systems used in RDM, such as \textbf{controlled vocabularies}, \textbf{thesauri}, and \textbf{ontologies}.
+        \pause
+        \textbf{Interoperability:}
+        \begin{itemize}
+            \item \textbf{Explain} how the application of a \textbf{controlled vocabulary} directly improves the \textbf{Interoperability} ('I') of a dataset for automated data harvesting.
+            \item \textbf{Explain} how \textbf{LinkML} facilitates the \textbf{Interoperability} of two distinct data models.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: Mapping and Assessing}
+    \begin{block}{Workshop (20 min)}
+        \textbf{Mapping:}
+        \begin{itemize}
+            \item \textbf{Map} a set of free-text keywords used in raw data documentation to the corresponding standardised terms available in a pre-selected \textbf{domain-specific thesaurus}.
+            \item \textbf{Map} classes and properties between two existing discipline-specific ontologies using the \textbf{mapping features within Protégé} (conceptual exercise).
+        \end{itemize}
+        \pause
+        \textbf{Assessment:}
+        \begin{itemize}
+            \item \textbf{Assess} a metadata record to \textbf{identify} instances where free-text entries should be replaced by terms from a \textbf{controlled vocabulary}.
+            \item \textbf{Assess} a candidate \textbf{LinkML schema} to \textbf{identify} structural conflicts or ambiguities when integrating metadata fields derived from two different domain ontologies.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Final Activity: Development and Justification}
+    \begin{block}{Activity (15 min)}
+        \textbf{Justification:} \textbf{Justify} the selection of a specific \textbf{ontology} over a simpler \textbf{controlled vocabulary} for the purpose of enabling complex, federated data querying.
+        \pause
+        \textbf{Development:} \textbf{Develop} a simple, internal \textbf{controlled vocabulary} for recurring experimental variables within a research project and integrate it into the project's \textbf{Electronic Lab Notebook (ELN)} template.
+        \pause
+        \textbf{Development:} \textbf{Develop} a \textbf{LinkML data model} that formally expresses semantic similarities, generating a standardised schema for cross-project data exchange.
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 6: Publish Metadata
+% ===================================================================
+\section{Publishing: KITOpen \& OEP}
+
+\begin{frame}{Day 2 - Part 6: Publishing Your Metadata}
+    \begin{block}{Our Goal}
+        The final step: making your data public, findable, and accessible using \textbf{KITOpen} and the \textbf{Open Energy Platform (OEP)}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Repository Comparison}
+    \begin{block}{Activity: Institutional vs. Domain (15 min)}
+        \textbf{Task:}
+        \begin{itemize}
+            \item \textbf{Identify} the mandatory submission fields required by the \textbf{KITOpen} metadata submission form.
+            \item \textbf{List} the specific \textbf{domain-relevant metadata properties} (e.g., energy carrier type) that are unique to the \textbf{Open Energy Platform (OEP)}.
+        \end{itemize}
+        \pause
+        \textbf{Discussion:}
+        \begin{itemize}
+            \item \textbf{Summarise} how \textbf{KITOpen} assigns a \textbf{Persistent Identifier (PID)} and how this fulfils 'F'.
+            \item \textbf{Illustrate} how the community standards enforced by the \textbf{OEP} directly enhance the \textbf{Interoperability} ('I').
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: Mock Submission}
+    \begin{block}{Workshop (15 min)}
+        \textbf{Task 1: KITOpen}
+        \begin{itemize}
+            \item \textbf{Upload} a fully documented dataset and its associated metadata file to the \textbf{KITOpen} repository (conceptual), ensuring all required fields are correctly populated.
+            \item \textbf{Differentiate} between the institutional schema used by KITOpen and Dublin Core, \textbf{analyze} where mapping is required.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: OEP}
+        \begin{itemize}
+            \item \textbf{Populate} an OEP metadata submission template using \textbf{controlled vocabularies} relevant to energy systems research.
+            \item \textbf{Compare} the required access policy settings between KITOpen and the \textbf{OEP}.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Final Activity: Publication Strategy}
+    \begin{block}{Final Activity (15 min)}
+        \textbf{Appraisal and Justification:}
+        \begin{itemize}
+            \item \textbf{Appraise} a draft KITOpen metadata record to ensure the selected \textbf{reuse license} (e.g., CC-BY) appropriately balances 'A' and 'R' principles.
+            \item \textbf{Justify} the decision to \textbf{cross-reference} the OEP metadata entry with a corresponding publication, assessing the benefit to \textbf{Find-ability}.
+        \end{itemize}
+        \pause
+        \textbf{Synthesis:}
+        \begin{itemize}
+            \item \textbf{Draft} the final, publicly visible \textbf{data citation} and \textbf{abstract} for a dataset, optimising the text for indexing within the \textbf{KITOpen} platform.
+            \item \textbf{Synthesise} a final publication strategy that integrates the institutional requirements of \textbf{KITOpen} with the domain-specific indexing capabilities of the \textbf{OEP}.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% --- FINAL SLIDE ---
+\begin{frame}{Thank You}
+    \begin{block}{All Goals Achieved!}
+        You can now connect Data Integrity to FAIR, build a DMP in RDMO, integrate RDM into operations, serialize and semantically enrich metadata, and publish on KITOpen and OEP.
+    \end{block}
+    
+    \begin{center}
+        \vfill
+        \textbf{Questions?}
+    \end{center}
+\end{frame}
+
+\end{document}

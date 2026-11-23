@@ -1,0 +1,530 @@
+\documentclass[aspectratio=169]{beamer}
+
+% --- PACKAGES ---
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{xcolor}
+\usepackage{tikz} % Needed for \tikz \path commands
+\usepackage{csquotes}
+\usepackage{listings}
+
+\usepackage[backend=biber, style=apa, doi=true]{biblatex}
+\addbibresource{bib/14281892.bib}
+\addbibresource{bib/berners.bib}
+\addbibresource{bib/turning.bib}
+\addbibresource{bib/fair.bib}
+\addbibresource{bib/platforms.bib}
+\addbibresource{bib/guide.bib}
+
+
+
+
+% 1. COLOR DEFINITIONS (KIT & HMC)
+\definecolor{KITBlue}{RGB}{0, 98, 148}
+\definecolor{HMCBlue}{RGB}{0, 40, 100}
+\definecolor{HMCAccent}{RGB}{20, 200, 255}
+\definecolor{HMCMint}{RGB}{5, 229, 186}
+\definecolor{HMCClaim}{RGB}{0, 128, 64}
+\definecolor{LightGray}{RGB}{242, 242, 242}
+\definecolor{VeryLightGray}{RGB}{252, 252, 252}
+
+
+% 2. THEME APPLICATION (Minimalist)
+\usefonttheme{professionalfonts}
+\useinnertheme{default}
+\useoutertheme{miniframes} % Minimalist header
+% \setbeamertemplate{navigation symbols}{} % No navigation symbols
+
+% Custom Footline Definition to insert the logo
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{
+    % Right box: Logo and Frame Number
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+      \raisebox{-0.5ex}{\includegraphics[width=10ex]{figs/hmc_logo.png}}| 
+      \usebeamerfont{date in head/foot}\insertframenumber\hspace*{8ex}
+    \end{beamercolorbox}}
+    \vskip1ex
+}
+
+% 3. BEAMER COLOR SCHEMES
+\setbeamercolor{palette primary}{fg=white, bg=HMCBlue}
+\setbeamercolor{section in head/foot}{fg=white, bg=HMCBlue}
+\setbeamercolor{palette secondary}{fg=white, bg=HMCAccent}
+\setbeamercolor{structure}{fg=HMCAccent}
+\setbeamercolor{local structure}{fg=HMCAccent}
+\setbeamercolor{title}{bg=HMCBlue, fg=LightGray}
+\setbeamercolor{frametitle}{fg=HMCBlue, bg=white}
+\setbeamercolor{block title}{fg=HMCClaim, bg=LightGray}
+\setbeamercolor{block body}{fg=HMCBlue, bg=VeryLightGray}
+\setbeamercolor{author in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{title in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{date in head/foot}{bg=white, fg=HMCBlue}
+
+% 4. FONT CONFIGURATION
+% (Requires Noto Sans to be installed on your system)
+%% \setmainfont{Noto Sans} 
+%% \setsansfont{Noto Sans}
+\lstdefinelanguage{XML}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={>}{{{\color{HMCAccent}>}}}1
+             {<}{{{\color{HMCAccent}<}}}1
+}
+\lstdefinelanguage{yaml}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+   % {  }{
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   % }{2}
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={"}{{{\texttt{\char34}}}}1
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{CSV}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={,}{{{\color{HMCAccent},}}}1
+    {;}{{{\color{HMCAccent};}}}1, 
+}
+
+% 5. Define the switch \ifenablepauses
+\newif\ifenablepauses
+% Set the default state
+\enablepausestrue           % (for animated presentation)
+\enablepausesfalse          % (for static presentation)
+
+
+% --- METADATA & TITLE GRAPHICS ---
+\title{Metadata for Scientific Data Integrity}
+\subtitle{for Energy}
+\author{IG Training - HMC}
+% \institute{Karlsruhe Institute of Technology (KIT) \\
+%     \vspace{.4em}
+%     \includegraphics[height=0.32cm]{figs/kit_logo.png} 
+%     \vspace{.4em}}
+
+\date{20. November 2025}
+
+% Add logos to the title page. 
+% Make sure 'kit_logo.png' and 'hmc_logo.png' are in the same folder.
+\titlegraphic{
+    \vspace{1.6em}
+    \includegraphics[height=0.64cm]{figs/hmc_Logo.png}
+}
+
+
+% ===================================================================
+% DOCUMENT BEGINS
+% ===================================================================
+
+\AtBeginDocument{
+    \ifenablepauses % Do nothing, \pause retains its normal behavior
+    \else % If pauses are disabled, redefine \pause to be an empty command (equivalent to \relax)
+      \let\pause\relax
+    \fi}
+
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% --- AGENDA ---
+\begin{frame}{Our Agenda: A 2-Day Learning Experience}
+    \begin{block}{How We'll Work}
+        This is an \textbf{interactive} workshop anchored by two integrated KIT/HMC engineering pillars: the \textbf{Smart Grid Operating States} use case and the \textbf{Energy Data Orchestrator (EDO)} pipeline. We use \textbf{Discussion, Think-Pair-Share, and Hands-On Workshops} to turn raw telemetry into validated, published FAIR assets.
+    \end{block}
+
+    \begin{columns}
+        \column{.5\textwidth}
+        \textbf{Day 1: Foundations \& Operations}
+        \begin{itemize}
+            \item Part 1: From Data Integrity to FAIR
+            \item Part 2: DMP-Driven Orchestration (RDMO \& EDO)
+            \item Part 3: RDM in Research Operations
+        \end{itemize}
+        
+        \column{.5\textwidth}
+        \textbf{Day 2: Metadata in Practice}
+        \begin{itemize}
+            \item Part 4: Metadata Serialisation \& Contracts
+            \item Part 5: Semantics, Alignment \& Validation
+            \item Part 6: Multi-Portal FAIR Dissemination
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+% --- RUNNING USE CASE INTRODUCTION ---
+\begin{frame}{Running Use Case: Smart Grid Telemetry \& EDO}
+    \begin{block}{End-to-End Scenario: From Microgrid Sensor to Repository}
+        Decentralised energy systems generate heterogeneous telemetry (Wind, BESS, Diesel, Dynamic Loads). Without automated governance, raw simulation outputs remain trapped in isolated \texttt{.csv} files.
+    \end{block}
+    \pause
+    \begin{itemize}
+        \item \textbf{Semantic Layer (Smart Grid States):} Transforms raw register values (\texttt{8}) into explicit operating states (\texttt{<ESS> <hasState> <Charging>}) using OEO, SAREF4ENER, and SOSA.
+        \item \textbf{Orchestration Layer (Energy Data Orchestrator — EDO):} Uses the Data Management Plan as an active control plane to mirror repositories, record \textbf{PROV-O} lineage, enforce \textbf{LinkML/SHACL} contracts, and automate publishing across OEP, KITopen, and Zenodo.
+    \end{itemize}
+\end{frame}
+
+% ===================================================================
+% DAY 1 - PART 1: From Data Integrity to FAIR Principles
+% ===================================================================
+\section{Intro: Integrity to FAIR}
+
+\begin{frame}{Day 1 - Part 1: From Data Integrity to FAIR}
+    \begin{block}{Our Goal}
+        Connect the core ethical duty of \textbf{Data Integrity} to the practical framework of the \textbf{FAIR Principles} across smart grid telemetry and automated RDM pipelines.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Warm-Up: Defining Our Terms}
+    \begin{block}{Group Discussion (10 min)}
+        In your own words...
+        \begin{itemize}
+            \item What is \textbf{Data Integrity}? \pause (Hint: Accuracy, completeness, unit consistency, and unbroken provenance)
+            \pause
+            \item What are the four pillars of the \textbf{FAIR} acronym (F, A, I, R)?
+            \pause
+            \item \textbf{List} three Guidelines from the DFG Code of Conduct concerning Data Integrity and reproducibility.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Connecting the Dots: Integrity $\rightarrow$ Reusability}
+    \begin{block}{Think-Pair-Share (10 min)}
+        \textbf{Scenario:} A researcher exports a MATLAB/Simulink microgrid simulation \texttt{.csv} with unlabeled columns, mixed units ($\text{W}$ vs. $\text{kW}$), and no record of which script version generated it.
+        \pause
+        \begin{itemize}
+            \item How does this break \textbf{Interoperability} ('I') for grid controllers and \textbf{Reusability} ('R') for external researchers?
+            \pause
+            \item \textbf{Explain} how automated provenance and FAIR adherence satisfy DFG guidelines.
+        \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{Our Goal}
+        Establish the causal rule: \textbf{No Unit/Lineage Integrity $\rightarrow$ No Reusability}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Activity: The Microgrid \& Pipeline Concordance Checklist}
+    \begin{block}{Activity: Write a Checklist (15 min)}
+        You are onboarding a new energy researcher onto the microgrid simulation and EDO workflow.
+        \pause
+        \textbf{Task:} Draft a 5-point checklist to verify data integrity before pipeline ingestion.
+        \begin{itemize}
+            \item \pause Example: "Are all power values normalized to SI units ($\text{W}$) in \texttt{mapping.yaml}?"
+            \item \pause Example: "Are timestamps synchronized (ISO 8601) and linked to source Simulink commits?"
+            \item \pause Example: "Does every dataset artifact carry verifiable provenance metadata?"
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Discussion: Authenticity vs. Accessibility}
+    \begin{block}{Discussion (10 min)}
+        A Persistent Identifier (PID) serves both Data Integrity and FAIR.
+        \pause
+        \begin{itemize}
+            \item \textbf{Differentiate} technical requirements for guaranteeing \textbf{Authenticity} (cryptographic hashes, Git commit SHAs, PROV-O lineage) versus machine \textbf{Accessibility} ('A').
+            \pause
+            \item \textbf{Analyze} how minting PIDs across Zenodo, KITopen, and HMC PIDA (\texttt{purls.helmholtz-metadaten.de}) anchors both vocabulary terms and datasets.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Challenge: 5-Star Interoperability in Energy Research}
+    \begin{block}{Workshop: Develop a Standard (15 min)}
+        \textbf{Task:} Evaluate our Smart Grid data artifacts against the \textbf{5-Star Open Data / Interoperability} scale:
+        \begin{itemize}
+            \item $\star\star\star$: Raw MATLAB/Simulink \texttt{.csv} export (structured, non-proprietary).
+            \item $\star\star\star\star$: RDF triples using persistent URIs (\texttt{<ESS> <hasState> <Charging>}).
+            \item $\star\star\star\star\star$: Linked to standard domain ontologies (OEO, SAREF4ENER, SOSA) and validated against shared LinkML schemas.
+        \end{itemize}
+        \pause
+        \textbf{Discuss:} Why are 3 stars ($\texttt{.csv}$) insufficient for automated smart grid services and federated energy platforms?
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 1 - PART 2: Implementing The FAIR-Principles - Planning Phase
+% ===================================================================
+\section{Planning: RDMO \& EDO}
+
+\begin{frame}{Day 1 - Part 2: DMP-Driven Orchestration (RDMO \& EDO)}
+    \begin{block}{Our Goal}
+        Move beyond static PDFs: treat the \textbf{Data Management Plan (DMP)} in \textbf{RDMO} as a machine-actionable blueprint that drives the \textbf{Energy Data Orchestrator (EDO)}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Concept: From Passive DMP to Active Orchestration}
+    \begin{block}{The EDO Paradigm Shift}
+        Traditionally, a DMP is written once and forgotten. In the \textbf{Energy Data Orchestrator (EDO)}, structured RDMO project descriptions act as executable metadata contracts:
+    \end{block}
+    \begin{itemize}
+        \item \textbf{Project Metadata Harvesting:} EDO fetches structured project parameters (creators, licenses, Git repositories, target portals) directly from RDMO.
+        \item \textbf{Automated Triggering:} Updating project specifications in RDMO configures downstream mirroring, validation rules, and publication targets.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Activity: RDMO Treasure Hunt}
+    \begin{block}{Activity: Log into RDMO (15 min)}
+        \textbf{Task:} Create a project in RDMO titled \emph{"Semantic Smart Grid Operating States"}.
+        \pause
+        \textbf{Challenge:} Map the RDMO fields that EDO harvests to each FAIR pillar:
+        \begin{itemize}
+            \item Findable (F) $\rightarrow$ Project title, creator ORCIDs, target PIDs (KITOpen / Zenodo)
+            \item Accessible (A) $\rightarrow$ Git repository URLs, access protocols, embargo settings
+            \item Interoperable (I) $\rightarrow$ Domain ontologies (OEO, SAREF4ENER, SOSA) \& LinkML profiles
+            \item Reusable (R) $\rightarrow$ Open licenses (CC-BY-4.0 / MIT), provenance rules
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: PID, Licensing \& Vocabulary Strategy}
+    \begin{block}{Workshop: Determine and Justify (20 min)}
+        \textbf{Task 1: Openness vs. Proprietary Lock-In}
+        \begin{itemize}
+            \item Explain why our smart grid architecture rejected the proprietary \textbf{Common Information Model (CIM)} in favour of open ontologies (OEO, SOSA, SAREF4ENER).
+            \item Configure open licenses in RDMO (\textbf{CC-BY-4.0} for ontologies/data, \textbf{MIT} for pipeline code) so EDO can propagate license metadata automatically.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: Discipline-Specific Standards}
+        \begin{itemize}
+            \item \textbf{Justify} pairing general metadata (Dublin Core / DataCite) with energy-domain standards (OEO + SAREF4ENER).
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 1 - PART 3: Integrating RDM in Research Operations
+% ===================================================================
+\section{Operations: RDM in Practice}
+
+\begin{frame}{Day 1 - Part 3: RDM in Research Operations}
+    \begin{block}{Our Goal}
+        Automate daily research operations by combining declarative telemetry pipelines (\texttt{mapping.yaml}) with \textbf{EDO Git Mirroring} and \textbf{PROV-O Lineage}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Architecture: Smart Grid Pipeline + EDO Backbone}
+    \begin{block}{Two-Stage Operational Workflow}
+        \textbf{Stage A — Semantic Telemetry Transformation:}
+        \begin{enumerate}
+            \item MATLAB/Simulink microgrid model exports time-series logs (\texttt{.csv}).
+            \item \texttt{mapping.yaml}, \texttt{mapper.py}, and \texttt{state\_deriver.py} map values to \texttt{sosa:Observation} and infer operating states.
+        \end{enumerate}
+        \pause
+        \textbf{Stage B — EDO Governance \& Lineage:}
+        \begin{enumerate}
+            \item \textbf{Git Mirroring:} EDO automatically mirrors code, \texttt{mapping.yaml}, and generated graphs into controlled archival repositories.
+            \item \textbf{PROV-O Lineage:} EDO records W3C \texttt{PROV-O} graphs linking raw \texttt{.csv} entities, transformation activities, and software agents.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: Version Control, Mirroring \& Declarative Configs}
+    \begin{block}{Workshop: Hands-On Traceability (25 min)}
+        \textbf{Task 1: Zero-Code Device Onboarding}
+        \begin{itemize}
+            \item Add a Photovoltaic (PV) inverter to the microgrid by extending \texttt{mapping.yaml} with SI scaling factors and class mappings—without touching Python code.
+        \end{itemize}
+        \pause
+        \textbf{Task 2: EDO Git Mirroring \& Provenance Audit}
+        \begin{itemize}
+            \item Commit the updated \texttt{mapping.yaml} and trace how EDO's Git mirroring captures the exact commit snapshot.
+            \item Sketch the resulting \textbf{PROV-O} triple chain (\texttt{prov:wasGeneratedBy}, \texttt{prov:used}, \texttt{prov:wasAssociatedWith}) for the newly derived PV knowledge graph.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Troubleshooting \& Lineage Verification}
+    \begin{block}{Scenario: Pipeline Audit (15 min)}
+        \textbf{Comparison:} Compare manual spreadsheet tracking against an EDO-orchestrated pipeline recording \textbf{PROV-O} lineage across every transformation step.
+        \pause
+        \textbf{Troubleshooting:} A downstream controller reports an anomalous BESS state transition. Using PROV-O lineage and mirrored Git history, trace whether the root cause lies in the Simulink export, \texttt{mapping.yaml} scaling, or \texttt{state\_deriver.py} thresholds.
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 4: Recording and Transforming Metadata, Serialisation
+% ===================================================================
+\section{Metadata: Serialization \& Contracts}
+
+\begin{frame}{Day 2 - Part 4: Metadata Serialisation \& Schema Contracts}
+    \begin{block}{Our Goal}
+        Encode metadata cleanly (\texttt{CSV}, \texttt{YAML}, \texttt{JSON-LD}, \texttt{Turtle/.ttl}) and define contract-first data models using \textbf{LinkML}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Warm-Up: Multi-Format Serialisation in EDO}
+    \begin{block}{Group Brainstorm (10 min)}
+        \textbf{Compare} how each format serves a distinct architectural role:
+        \begin{itemize}
+            \item \textbf{CSV:} Flat time-series rows from MATLAB/Simulink.
+            \item \textbf{YAML (\texttt{mapping.yaml} \& LinkML schemas):} Human-editable configuration and structural schema definitions.
+            \item \textbf{RDF Turtle (\texttt{semacontrol.ttl}) \& JSON-LD:} Graph serialisations for semantic reasoning, SPARQL queries, and repository APIs.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Workshop: Contract-First Modeling with LinkML}
+    \begin{block}{Discussion and Workshop (20 min)}
+        \textbf{Concept:} EDO uses \textbf{LinkML (Linked Data Modeling Language)} as a single source of truth to generate JSON Schema, SHACL shapes, and RDF/OWL definitions.
+        \pause
+        \begin{itemize}
+            \item \textbf{Differentiate} descriptive metadata (microgrid topology, creators) from observation metadata (timestamps, SI units) and provenance metadata (PROV-O).
+            \item \textbf{Exercise:} Inspect a LinkML schema slot for \texttt{state\_of\_charge} (range: float $0\text{--}100$, unit: percent) and explain how contract-first modeling prevents invalid telemetry from entering the Knowledge Graph.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 5: Using Standards and Vocabularies
+% ===================================================================
+\section{Metadata: Semantics \& Validation}
+
+\begin{frame}{Day 2 - Part 5: Semantics, Alignment \& SHACL Validation}
+    \begin{block}{Our Goal}
+        Unify domain ontologies for machine reasoning and enforce structural quality gates using \textbf{LinkML/SHACL} validation before publication.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Deep Dive: Three-Layer Smart Grid Ontology Architecture}
+    \begin{block}{Complementary Ontologies in \texttt{semacontrol.ttl}}
+        Evaluating OEO, SAREF4ENER, SOSA, and CIM leads to a layered semantic stack:
+    \end{block}
+    \begin{itemize}
+        \item \textbf{Layer 3 — Output Knowledge Graph:} Unified, SPARQL-queryable RDF graph for downstream controllers and EDO dissemination.
+        \item \textbf{Layer 2 — Domain \& Control Vocabularies:}
+        \begin{itemize}
+            \item \emph{Asset \& Grid Topology} $\rightarrow$ \textbf{OEO} (Open Energy Ontology, grounded in BFO).
+            \item \emph{Operating States \& Modes} $\rightarrow$ \textbf{SAREF4ENER} (e.g., Charging, Discharging, Standby).
+        \end{itemize}
+        \item \textbf{Layer 1 — Measurement Data:}
+        \begin{itemize}
+            \item \emph{Sensor Observations \& Units} $\rightarrow$ \textbf{SOSA}.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Workshop: Ontology Alignment \& BFO Grounding}
+    \begin{block}{Workshop: Merging Ontologies (20 min)}
+        \textbf{Challenge:} Merge OEO, SAREF4ENER, and SOSA into a single conflict-free vocabulary.
+        \pause
+        \begin{itemize}
+            \item \textbf{Automated Matching:} Compare string-based matching (\textbf{AgreementMakerLight}) vs. logic-based alignment (\textbf{LogMap}).
+            \item \textbf{Top-Level BFO Grounding:} Apply manual Basic Formal Ontology axioms:
+            \begin{itemize}
+                \item $\texttt{sosa:Observation} \sqsubseteq \texttt{bfo:Process}$
+                \item $\texttt{sosa:FeatureOfInterest} \sqsubseteq \texttt{bfo:IndependentContinuant}$
+            \end{itemize}
+            \item \textbf{Task:} Ground missing BESS operating states under \texttt{SAREF4ENER} and verify class disjointness.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Quality Gates: Automated LinkML \& SHACL Validation}
+    \begin{block}{Activity: Enforcing Semantic Rules in EDO (15 min)}
+        Before EDO publishes any Knowledge Graph or metadata package, it runs automated \textbf{LinkML/SHACL} validation rules:
+        \pause
+        \begin{itemize}
+            \item \textbf{Structural Check:} Does every \texttt{sosa:Observation} link to a valid \texttt{sosa:hasResult} and timestamp?
+            \item \textbf{Domain Rule:} If a BESS has operating state \texttt{Charging}, is active power flow sign consistent with the OEO asset definition?
+            \item \textbf{Hands-On:} Write a conceptual SHACL constraint that rejects any microgrid asset lacking an OEO class type or license URI.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ===================================================================
+% DAY 2 - PART 6: Publish Metadata
+% ===================================================================
+\section{Publishing: Multi-Portal Dissemination}
+
+\begin{frame}{Day 2 - Part 6: Multi-Portal FAIR Dissemination via EDO}
+    \begin{block}{Our Goal}
+        Eliminate manual multi-portal uploads: use \textbf{EDO} to transform validated metadata into portal-specific profiles for \textbf{OEP}, \textbf{KITopen}, and \textbf{Zenodo}.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Architecture: EDO Multi-Portal Dissemination}
+    \begin{block}{One Validated Source $\rightarrow$ Three Specialized Targets}
+        EDO maps the canonical RDMO + PROV-O + LinkML metadata graph into tailored submission packages:
+    \end{block}
+    \begin{itemize}
+        \item \textbf{Open Energy Platform (OEP):} Publishes structured energy-domain tables and semantic annotations (OEO terms, energy carriers, grid topology).
+        \item \textbf{KITopen:} Publishes institutional records, doctoral/project deliverables, and mints institutional DOIs aligned with Helmholtz guidelines.
+        \item \textbf{Zenodo:} Archives versioned software snapshots (\texttt{run.py}, \texttt{semacontrol.ttl}), RO-Crates, and mints release DOIs for long-term reproducibility.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Activity: Cross-Portal Metadata Mapping}
+    \begin{block}{Activity: Comparing Repository Requirements (15 min)}
+        \textbf{Task:} Map fields from our Smart Grid Knowledge Graph and RDMO plan across the three EDO targets:
+        \begin{itemize}
+            \item \textbf{OEP:} Which domain-specific properties (e.g., BESS capacity, energy carrier, OEO URI) are required?
+            \item \textbf{KITopen vs. Zenodo:} How do institutional metadata schemas differ from DataCite/Zenodo software release metadata?
+        \end{itemize}
+        \pause
+        \textbf{Discussion:} How does automated cross-linking of DOIs across OEP, KITopen, and Zenodo maximize Findability ('F') and PROV-O traceability?
+    \end{block}
+\end{frame}
+
+\begin{frame}{Final Workshop: End-to-End EDO Release Simulation}
+    \begin{block}{Final Activity: From RDMO to Published Release (15 min)}
+        \begin{itemize}
+            \item \textbf{Step 1 (Validation Gate):} Verify that the microgrid RDF graph passes LinkML/SHACL checks and includes PROV-O lineage.
+            \item \textbf{Step 2 (Portal Packaging):} Draft the unified citation and abstract for the \texttt{semacontrol.ttl} ontology and telemetry pipeline under \textbf{CC-BY-4.0 / MIT}.
+            \item \textbf{Step 3 (Outlook):} Discuss how EDO-governed semantic states enable trusted Hardware-in-the-Loop (HiL) testing and autonomous smart grid services.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% --- FINAL SLIDE ---
+\begin{frame}{Thank You}
+    \begin{block}{All Goals Achieved!}
+        Combining the \textbf{Smart Grid Operating States} architecture with the \textbf{Energy Data Orchestrator (EDO)}, you can now:
+        \begin{itemize}
+            \item Drive RDM workflows directly from machine-actionable \textbf{RDMO} plans.
+            \item Automate \textbf{Git mirroring} and record W3C \textbf{PROV-O} lineage.
+            \item Align ontologies (\textbf{OEO + SAREF4ENER + SOSA}) and enforce \textbf{LinkML/SHACL} contracts.
+            \item Disseminate validated FAIR datasets and software across \textbf{OEP, KITopen, and Zenodo}.
+        \end{itemize}
+    \end{block}
+    
+    \begin{center}
+        \vfill
+        \textbf{Questions \& Open Discussion?}
+    \end{center}
+\end{frame}
+
+\end{document}

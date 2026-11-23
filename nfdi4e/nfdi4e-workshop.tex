@@ -1,0 +1,140 @@
+\documentclass[11pt]{tibop-article}
+
+\TIBauthor[Anonymised et al]{Anonymised\affOne\orcid{0000-0000-0000-0000}}
+\TIBaffiliations{\affOne Anonym affiliation\\
+}
+
+% \TIBauthor[A. Koubaa et al]{Mohamed-Anis Koubaa\affOne\orcid{0000-0001-8552-2008}\and
+%             Nan Liu\affOne\orcid{0009-0005-8768-7072}\lastand \\
+%             Wolfgang Suess\affOne\orcid{0000-0003-2785-7736}
+%           }
+% \TIBaffiliations{\affOne Karlsruhe Institute of Technology, Karlsruhe, Germany\\
+% }
+
+\TIBtitle{Metadata Mastery}
+\TIBsubtitle{From Schema to Semantic Publication}
+\TIBbundlename[NFDI4Energy 2026]{NFDI4Energy 2026}
+% \TIBconferencesession{Session Name}%ignored for journal articles
+% \TIBdoi{to be filled in}
+% \TIBpublisheddate{to be filled in}
+\TIBabstract{This training module provides a comprehensive, hands-on guide to preparing and deploying research data metadata for maximum utility and discoverability. Attendees will first master the critical process of Metadata Serialisation, learning how to translate conceptual metadata schemas into machine-readable formats (such as JSON or XML) crucial for automated processing. We will then transition to the foundational concepts of Semantics and Vocabularies, exploring how controlled vocabularies and ontological alignments inject meaning and interoperability into data descriptions, enabling it to be correctly interpreted by both humans and intelligent systems. Finally, the training culminates in best practices for publishing metadata, covering deployment strategies, repository selection, and essential techniques for generating persistent identifiers (PIDs) to ensure long-term data citation and access.}
+\TIBkeywords{Metadata Serialisation, Semantics, Controlled Vocabularies, Publishing}
+\addbibresource{local.bib}
+
+% ----------------
+\usepackage{xfrac}
+% \usepackage{put your packages here}
+% ----------------
+\begin{document}
+\maketitle
+
+
+
+\section{Draft Outline}
+\subsection{Recording and Transforming Metadata, Serialisation and Format Issues}
+Time Duration: 45 minutes
+
+\begin{itemize}
+    % \item \textbf{Recall} the core components (e.g., Creator, Date, Title, Keywords) of a minimal metadata standard such as \textbf{Dublin Core}
+    % \begin{itemize}
+        \item \textbf{Recall} the structural differences between common metadata serialization formats, such as \textbf{XML}, \textbf{JSON}, and \textbf{CSV}
+    % \end{itemize}
+    % \item \textbf{Differentiate} between \textbf{descriptive metadata} (what the data is) and \textbf{technical metadata} (how the data was created), and \textbf{explain} the purpose of each in ensuring data longevity
+    % \begin{itemize}
+        \item \textbf{Differentiate} between the role of a \textbf{metadata schema} (defining structure) and a \textbf{serialisation format} (encoding structure) in achieving machine readability
+    % \end{itemize}
+    % \item \textbf{Annotate} a raw dataset file by applying a selected discipline-specific metadata standard (e.g., ISO 19115 for geospatial data) using an appropriate tool
+    % \begin{itemize}
+        \item \textbf{Annotate} a raw dataset file by applying a selected minimal metadata schema (e.g., using \textbf{Dublin Core}) and exporting the result in a specified serialisation format (e.g., JSON)
+    % \end{itemize}
+    \item \textbf{Compare} two different metadata files (e.g., XML vs. JSON) for the same dataset and \textbf{analyse} their respective efficiencies in terms of \textbf{machine readability} and \textbf{schema validation}
+    % \begin{itemize}
+    %     \item \textbf{Compare} two different serialisation formats (e.g., XML vs. JSON) for the same dataset and \textbf{analyse} their respective efficiencies in terms of \textbf{machine parsing} and \textbf{storage overhead}
+    % \end{itemize}
+    \item \textbf{Justify} the selection of a specific \textbf{controlled vocabulary} or \textbf{ontology} (e.g., from a domain-specific registry) to transform free-text keywords into standardised, machine-actionable terms, thereby improving semantic interoperability
+    % \begin{itemize}
+    %     \item \textbf{Justify} the selection of a specific \textbf{serialisation format} for a project based on the constraints of the intended data \textbf{pipeline} or repository (e.g., selecting JSON-LD for web environments)
+    % \end{itemize}
+    % \item \textbf{Transform} a project's internal, proprietary metadata scheme into an \textbf{interoperable} format (e.g., using an XSLT transformation) that complies with the requirements of a target data repository
+    % \begin{itemize}
+        \item \textbf{Transform} a project's internal, proprietary metadata scheme into a \textbf{standardized serialization format} (e.g., using a dedicated parsing script or \textbf{XSLT} transformation) that complies with repository requirements
+    % \end{itemize}
+\end{itemize}
+
+\subsection{Using Standards and Vocabularies}
+Time Duration: 45 minutes
+
+\begin{itemize}
+    \item \textbf{List} three examples of knowledge organisation systems used in RDM, such as \textbf{controlled vocabularies}, \textbf{thesauri}, and \textbf{ontologies}
+    % \begin{itemize}
+    %     \item \textbf{Recall} the core components of the \textbf{Protégé} user interface necessary for defining classes, properties, and axioms within an ontology
+    % \end{itemize}
+    % \item \textbf{Explain} how the application of a \textbf{controlled vocabulary} directly improves the \textbf{Interoperability} ('I') of a dataset for automated data harvesting
+    % \begin{itemize}
+        \item \textbf{Explain} how \textbf{LinkML} facilitates the \textbf{Interoperability} of two distinct data models by automatically generating validation artefacts and serialisers
+    % \end{itemize}
+    \item \textbf{Map} a set of free-text keywords used in raw data documentation to the corresponding standardised terms available in a pre-selected \textbf{domain-specific thesaurus}
+    % \begin{itemize}
+    %     \item \textbf{Map} classes and properties between two existing discipline-specific ontologies (e.g., Ontology A to Ontology B) using the \textbf{mapping features within Protégé} 
+    % \end{itemize}
+    % \item \textbf{Assess} a metadata record to \textbf{identify} instances where free-text entries should be replaced by terms from a \textbf{controlled vocabulary}, and \textbf{analyse} the gap in semantic richness
+    % \begin{itemize}
+        \item \textbf{Assess} a candidate \textbf{LinkML schema} to \textbf{identify} structural conflicts or ambiguities when integrating metadata fields derived from two different domain ontologies 
+    % \end{itemize}
+    \item \textbf{Justify} the selection of a specific \textbf{ontology} (e.g., an established one in the field of Energy) over a simpler \textbf{controlled vocabulary} for the purpose of enabling complex, federated data querying
+    % \begin{itemize}
+    %     \item \textbf{Justify} the decision to use an advanced feature in \textbf{Protégé} (e.g., \textbf{reasoner queries}) to validate the \textbf{semantic consistency} of newly asserted mappings between terms from different sources
+    % \end{itemize}
+    \item \textbf{Develop} a simple, internal \textbf{controlled vocabulary} for recurring experimental variables within a research project and integrate it into the project's \textbf{Electronic Lab Notebook (ELN)} template
+    % \begin{itemize}
+    %     \item \textbf{Develop} a \textbf{LinkML data model} that formally expresses the \textbf{semantic similarities} identified via \textbf{Protégé mapping}, thereby generating a standardised schema for cross-project data exchange
+    % \end{itemize}
+\end{itemize}
+
+\subsection{Publish Metadata}
+Time Duration: 60 minutes, Hands-on
+
+\begin{itemize}
+    \item \textbf{Identify} the mandatory submission fields (e.g., DOI registration requirement, licensing field) required by the \textit{zenodo} metadata submission form
+    \item \textbf{List} the specific \textbf{domain-relevant metadata properties} (e.g., energy carrier type, generation technology) that are unique to the \textbf{Open Energy Platform (OEP)}
+    \item \textbf{Summarise} the process by which \textit{zenodo} assigns a \textbf{Persistent Identifier (PID)} (like a DOI) and how this mechanism fulfils the 'F' (Findable) principle
+   
+    \item \textbf{Illustrate} how the community standards enforced by the \textbf{OEP} directly enhance the \textbf{Interoperability} ('I') of the published metadata for energy researchers
+    
+    \item \textbf{Upload} a fully documented dataset and its associated metadata file to the \textit{zenodo} repository, ensuring all required fields are correctly populated and validated
+    
+    \item \textbf{Populate} an OEP metadata submission template using \textbf{controlled vocabularies} (e.g., EPSG codes for geographic regions) relevant to energy systems research
+    
+    \item \textbf{Differentiate} between the metadata schema used by \textit{zenodo} and a general schema like Dublin Core, and \textbf{analyse} where additional mapping or enrichment is required for compliance
+    \item \textbf{Compare} the required access policy settings between a general repository (like zenodo) and the \textbf{OEP}, and \textbf{analyse} how the OEP's policy facilitates collaborative data use
+
+    \item \textbf{Appraise} a draft zenodo metadata record to ensure the selected access and \textbf{reuse license} (e.g., CC-BY) appropriately balances policy with the 'A' and 'R' principles
+    
+    \item \textbf{Justify} the decision to \textbf{cross-reference} the OEP metadata entry with a corresponding publication in a publication database, assessing the benefit to the dataset's \textbf{Find-ability} score
+    
+    \item \textbf{Draft} the final, publicly visible \textbf{data citation} and \textbf{abstract} for a dataset, optimising the text for indexing and search-ability within the \textit{zenodo} platform
+    
+    \item \textbf{Synthesise} a final publication strategy that integrates the requirements of \textit{zenodo} with the domain-specific indexing capabilities of the \textbf{OEP} for maximum dissemination and impact
+\end{itemize}
+
+\section*{Author contributions}
+Anonymised
+% \noindent \textbf{A. Koubaa:} Conceptualization, Writing – original draft.
+
+% \noindent \textbf{N. Liu:} Writing – review \& editing.
+
+% \noindent \textbf{W. Suess:} Supervision.
+
+\section*{Competing interests}
+The authors declare the following competing interests: recent coauthors and collaborators are Astrid Nieße and Stephan Ferenz.
+
+\section*{Funding}
+Anonymised
+% The work was funded by the German Research
+% Foundation (DFG) – 501865131 within the German National Research Data Infrastructure (NFDI, www.nfdi.de) and the Helmholtz Metadata Collaboration (HMC), an incubator-platform of the Helmholtz Association within the framework of the Information and Data Science strategic initiative.
+
+% Please use \href{https://www.overleaf.com/learn/latex/bibliography_management_with_biblatex}{Biblatex}. Add your references in *bib-format to the file local.bib.
+
+% \printbibliography[heading=references]
+
+\end{document}

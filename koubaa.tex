@@ -1,0 +1,189 @@
+\documentclass{beamer}
+
+% 1. COLOR DEFINITIONS (KIT & HMC)
+\definecolor{KITBlue}{RGB}{0, 98, 148}
+\definecolor{HMCBlue}{RGB}{0, 40, 100}
+\definecolor{HMCAccent}{RGB}{20, 200, 255}
+\definecolor{HMCMint}{RGB}{5, 229, 186}
+\definecolor{HMCClaim}{RGB}{0, 128, 64}
+\definecolor{LightGray}{RGB}{242, 242, 242}
+\definecolor{VeryLightGray}{RGB}{252, 252, 252}
+
+
+% 2. THEME APPLICATION (Minimalist)
+\usefonttheme{professionalfonts}
+\useinnertheme{default}
+\useoutertheme{miniframes} % Minimalist header
+% \setbeamertemplate{navigation symbols}{} % No navigation symbols
+
+% Custom Footline Definition to insert the logo
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{
+    % Right box: Logo and Frame Number
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+      \raisebox{-0.2ex}{\includegraphics[width=10ex]{figs/hmc_logo.png}}| \raisebox{-0.48ex}{\includegraphics[width=6.4ex]{figs/kit_logo.png}}| 
+      \usebeamerfont{date in head/foot}\insertframenumber\hspace*{8ex}
+    \end{beamercolorbox}}
+    \vskip1ex
+}
+
+% 3. BEAMER COLOR SCHEMES
+\setbeamercolor{palette primary}{fg=white, bg=HMCBlue}
+\setbeamercolor{section in head/foot}{fg=white, bg=HMCBlue}
+\setbeamercolor{palette secondary}{fg=white, bg=HMCAccent}
+\setbeamercolor{structure}{fg=HMCAccent}
+\setbeamercolor{local structure}{fg=HMCAccent}
+\setbeamercolor{title}{bg=HMCBlue, fg=LightGray}
+\setbeamercolor{frametitle}{fg=HMCBlue, bg=white}
+\setbeamercolor{block title}{fg=HMCClaim, bg=LightGray}
+\setbeamercolor{block body}{fg=HMCBlue, bg=VeryLightGray}
+\setbeamercolor{author in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{title in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{date in head/foot}{bg=white, fg=HMCBlue}
+
+
+% --- Metadata ---
+\title[Research Interests]{IT Methods for Energy Data Management}
+\subtitle{Knowledge Representation, FAIR Principles, and Open Science}
+\author[Mohamed-Anis Koubaa]{Mohamed-Anis Koubaa \\ \small ORCID: 0000-0001-8552-2008}
+\institute[KIT]{Karlsruhe Institute of Technology (KIT) \\ Institute for Applied Informatics (IAI) -- IT4EDM}
+\date{\today}
+
+\begin{document}
+
+% Slide 1: Title
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Slide 2: Research Overview
+\begin{frame}{Research Vision}
+    \begin{itemize}
+        \item \textbf{Core Objective:} Bridging the gap between raw energy data and actionable knowledge using Semantic Web technologies.
+        \item \textbf{Key Pillars:}
+            \begin{itemize}
+                \item Knowledge Representation (Ontologies/Knowledge Graphs).
+                \item Information Extraction from heterogeneous sources.
+                \item Implementation of FAIR Principles (Findable, Accessible, Interoperable, Reusable).
+                \item Advancement of Open Science in the Energy Domain.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% Slide 3: The Energy Domain Context
+\begin{frame}{Information Technology for Energy Data Management (IT4EDM)}
+    \begin{itemize}
+        \item Located at the \textbf{IAI (KIT)}, focusing on the digital transformation of energy systems.
+        \item \textbf{Challenges:} Data silos, inconsistent metadata, and high-frequency time-series data.
+        \item \textbf{Our Approach:} Developing robust IT methods to streamline data discovery and integration for researchers and grid operators.
+    \end{itemize}
+\end{frame}
+
+% --- Slide 4: ReGIMO (Part 1: The Challenge & Concept) ---
+\begin{frame}{ReGIMO: Bridging the Metadata Gap}
+    \begin{itemize}
+        \item \textbf{The Challenge:} 
+            \begin{itemize}
+                \item High manual effort in metadata enrichment.
+                \item Heterogeneous definitions across different energy domains.
+                \item Obstacles to FAIR data workflows due to "siloed" descriptions.
+            \end{itemize}
+        \item \textbf{Our Solution:} An automated tool for the \textbf{registration of metadata} on distributed infrastructures.
+        \item \textbf{Core Philosophy:} Enhancing findability and machine-readability \textbf{without} altering data ownership or moving the actual data.
+    \end{itemize}
+    \vfill
+    \tiny{Source: Koubaa et al. (2024). \textit{Automatic Metadata Registration using regimo}. Zenodo. DOI: 10.5281/zenodo.10671031}
+\end{frame}
+
+% --- Slide 5: ReGIMO (Part 2: Technical Features) ---
+\begin{frame}{ReGIMO: Technical Implementation}
+    \begin{itemize}
+        \item \textbf{Semantic Interoperability:} 
+            \begin{itemize}
+                \item Maps local structures to standardized schemas.
+                \item Integration of domain-specific vocabularies.
+            \end{itemize}
+        \item \textbf{Workflow Integration:}
+            \begin{itemize}
+                \item Seamless connection with \textbf{RDMO} (Research Data Management Organiser).
+                \item Reuses existing project metadata to minimize redundant entry.
+            \end{itemize}
+        \item \textbf{Deployment:} Target infrastructures include the \textbf{Open Energy Family Databus}, fostering regionalized information modeling.
+    \end{itemize}
+\end{frame}
+
+% --- Slide 6: Semantico (Part 1: Knowledge Extraction) ---
+\begin{frame}{Semantico: From Strings to Semantics}
+    \begin{itemize}
+        \item \textbf{The Challenge:} The "Literature Deluge"—e.g., the rapid growth of Perovskite solar cell research makes manual review impossible.
+        \item \textbf{Objective:} A semi-automatic toolchain to find, analyze, and classify literature using \textbf{Ontology Learning}.
+        \item \textbf{Methodology:} 
+            \begin{itemize}
+                \item Collaboration between IT systems and domain experts.
+                \item Defining "Representational Artifacts" (Taxonomies/Relations).
+                \item Automated identification of concepts and universals in text.
+            \end{itemize}
+    \end{itemize}
+    \vfill
+    \tiny{Source: Koubaa et al. (2023). \textit{Semantico – Toolchain for literature classification}. Zenodo. DOI: 10.5281/zenodo.8421250}
+\end{frame}
+
+% --- Slide 7: Semantico (Part 2: Applications) ---
+\begin{frame}{Semantico: Impact on Energy Research}
+    \begin{itemize}
+        \item \textbf{Semantic Mapping:}
+            \begin{itemize}
+                \item Automated classification into domain classes.
+                \item Linking extracted data to global Knowledge Graphs.
+            \end{itemize}
+        \item \textbf{FAIR Data Enabling:} 
+            \begin{itemize}
+                \item Turns unstructured PDF data into machine-actionable knowledge.
+                \item Provides a foundation for evidence-based research in the energy sector.
+            \end{itemize}
+        \item \textbf{Utility:} Supports meta-analyses and rapid data discovery for experimental researchers.
+    \end{itemize}
+\end{frame}
+
+% Slide 8: Helmholtz Metadata Collaboration (HMC)
+\begin{frame}{FAIR Data via Helmholtz Metadata Collaboration}
+    \begin{itemize}
+        \item Active membership in the \textbf{HMC} to standardize metadata across the Helmholtz Association.
+        \item \textbf{Focus Areas:}
+            \begin{itemize}
+                \item Developing domain-specific metadata standards for Energy.
+                \item Promoting the \textbf{FAIR Principles} as a default research culture.
+                \item Technical consulting for sustainable data lifecycles.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% Slide 9: Open Science & Information Extraction
+\begin{frame}{The Path to Open Science}
+    \begin{itemize}
+        \item \textbf{Information Extraction:} Using NLP and heuristic methods to "unlock" data trapped in PDFs and legacy databases.
+        \item \textbf{Open Science:} Commitment to open-source software and open-access data publications (Zenodo).
+        \item \textbf{Interoperability:} Ensuring that energy models can "talk" to each other through shared semantic layers.
+    \end{itemize}
+\end{frame}
+
+% Slide 10: Conclusion & Contact (Final Slide)
+\begin{frame}{Summary and Future Outlook}
+    \begin{block}{Takeaway}
+        Modern energy research requires more than just data; it requires \textbf{meaningful data} that is FAIR and openly accessible through robust semantic IT methods.
+    \end{block}
+    
+    \vspace{0.8cm}
+            \textbf{Contact Information}
+            \begin{itemize}
+                \item \textbf{Mohamed-Anis Koubaa}
+                \item \small{ORCID: 0000-0001-8552-2008}
+                \item \small{Email: mohamed.koubaa@kit.edu}
+                \item \href{https://www.iai.kit.edu/2154_4201.php}{\color{HMCAccent}\underline{IT4EDM Group at KIT}}
+                \item \href{https://helmholtz-metadaten.de/energy/team}{\color{HMCAccent}\underline{Energy Hub at HMC}}
+            \end{itemize}
+
+\end{frame}
+
+\end{document}

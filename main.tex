@@ -1,0 +1,247 @@
+\documentclass[aspectratio=169]{beamer}
+
+% --- PACKAGES ---
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{xcolor}
+\usepackage{tikz} % Needed for \tikz \path commands
+\usepackage{csquotes}
+\usepackage{listings}
+
+\usepackage[backend=biber, style=apa, doi=true]{biblatex}
+\addbibresource{bib/14281892.bib}
+\addbibresource{bib/berners.bib}
+\addbibresource{bib/turning.bib}
+\addbibresource{bib/fair.bib}
+\addbibresource{bib/platforms.bib}
+\addbibresource{bib/guide.bib}
+
+
+
+
+% 1. COLOR DEFINITIONS (KIT & HMC)
+\definecolor{KITBlue}{RGB}{0, 98, 148}
+\definecolor{HMCBlue}{RGB}{0, 40, 100}
+\definecolor{HMCAccent}{RGB}{20, 200, 255}
+\definecolor{HMCMint}{RGB}{5, 229, 186}
+\definecolor{HMCClaim}{RGB}{0, 128, 64}
+\definecolor{LightGray}{RGB}{242, 242, 242}
+\definecolor{VeryLightGray}{RGB}{252, 252, 252}
+
+
+% 2. THEME APPLICATION (Minimalist)
+\usefonttheme{professionalfonts}
+\useinnertheme{default}
+\useoutertheme{miniframes} % Minimalist header
+% \setbeamertemplate{navigation symbols}{} % No navigation symbols
+
+% Custom Footline Definition to insert the logo
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{
+    % Right box: Logo and Frame Number
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+      \raisebox{-0.5ex}{\includegraphics[width=10ex]{figs/hmc_logo.png}}| 
+      \usebeamerfont{date in head/foot}\insertframenumber\hspace*{8ex}
+    \end{beamercolorbox}}
+    \vskip1ex
+}
+
+% 3. BEAMER COLOR SCHEMES
+\setbeamercolor{palette primary}{fg=white, bg=HMCBlue}
+\setbeamercolor{section in head/foot}{fg=white, bg=HMCBlue}
+\setbeamercolor{palette secondary}{fg=white, bg=HMCAccent}
+\setbeamercolor{structure}{fg=HMCAccent}
+\setbeamercolor{local structure}{fg=HMCAccent}
+\setbeamercolor{title}{bg=HMCBlue, fg=LightGray}
+\setbeamercolor{frametitle}{fg=HMCBlue, bg=white}
+\setbeamercolor{block title}{fg=HMCClaim, bg=LightGray}
+\setbeamercolor{block body}{fg=HMCBlue, bg=VeryLightGray}
+\setbeamercolor{author in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{title in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{date in head/foot}{bg=white, fg=HMCBlue}
+
+% 4. FONT CONFIGURATION
+% (Requires Noto Sans to be installed on your system)
+%% \setmainfont{Noto Sans} 
+%% \setsansfont{Noto Sans}
+\lstdefinelanguage{XML}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={>}{{{\color{HMCAccent}>}}}1
+             {<}{{{\color{HMCAccent}<}}}1
+}
+\lstdefinelanguage{yaml}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+   % {  }{
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   % }{2}
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={"}{{{\texttt{\char34}}}}1
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{CSV}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={,}{{{\color{HMCAccent},}}}1
+    {;}{{{\color{HMCAccent};}}}1, 
+}
+
+% 5. Define the switch \ifenablepauses
+\newif\ifenablepauses
+% Set the default state
+\enablepausestrue           % (for animated presentation)
+\enablepausesfalse          % (for static presentation)
+
+
+% --- METADATA & TITLE GRAPHICS ---
+\title{Metadata for Scientific Data Integrity}
+\subtitle{for Energy}
+\author{IG Training - HMC}
+% \institute{Karlsruhe Institute of Technology (KIT) \\
+%     \vspace{.4em}
+%     \includegraphics[height=0.32cm]{figs/kit_logo.png} 
+%     \vspace{.4em}}
+
+\date{20. November 2025}
+
+% Add logos to the title page. 
+% Make sure 'kit_logo.png' and 'hmc_logo.png' are in the same folder.
+\titlegraphic{
+    \vspace{1.6em}
+    \includegraphics[height=0.64cm]{figs/hmc_Logo.png}
+}
+
+
+% ===================================================================
+% DOCUMENT BEGINS
+% ===================================================================
+
+\AtBeginDocument{
+    \ifenablepauses % Do nothing, \pause retains its normal behavior
+    \else % If pauses are disabled, redefine \pause to be an empty command (equivalent to \relax)
+      \let\pause\relax
+    \fi}
+    
+
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{frame}[plain]
+    % Use tikz to draw the image at the background layer (lower)
+    \tikz[overlay, remember picture] \path (current page.south west) node[anchor=south west] {
+        \includegraphics[width=\paperwidth]{figs/HMC-Training_Integrity_20251121-20_Indico.jpg}
+    };
+    
+\end{frame}
+
+\begin{frame}[plain]
+
+    \titlepage
+    
+\end{frame}
+
+% --- AGENDA ---
+{
+    \setbeamertemplate{background canvas}{
+        \includegraphics[width=\paperwidth,height=\paperheight]{figs/background_white.png}
+    }
+    \begin{frame}[plain]{Our Agenda: A 2-Day Learning Experience}
+        \begin{block}{How we will Work}
+            %TALK This is an \textbf{interactive} workshop. Each module follows a rhythm:
+            \begin{enumerate}
+                \item \textbf{Theory:} We explore the core concepts and "why"
+                \item \textbf{Examples:} We look at practical cases and implications
+                \item \textbf{Practice:} We apply the knowledge through activities and discussion $\therefore$
+            \end{enumerate}
+        \end{block}
+        \pause
+        \vspace{0.8em}
+        
+        \begin{columns}
+            \column{.5\textwidth}
+            \textbf{Day 1: Foundations \& Operations}
+            \begin{itemize}
+                \item Part 1: From Data Integrity to FAIR
+                \item Part 2: The Planning Phase (DMPs)
+                \item Part 3: RDM in Research Operations
+            \end{itemize}
+            
+            \column{.5\textwidth}
+            \textbf{Day 2: Metadata in Practice}
+            \begin{itemize}
+                \item Part 4: Metadata Serialisation
+                \item Part 5: Semantics \& Vocabularies
+                \item Part 6: Publishing Your Metadata
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+}
+
+% ===================================================================
+% DAY 1 - PART 1: From Data Integrity to FAIR Principles
+% ===================================================================
+
+\include{d1p1}
+
+% ===================================================================
+% DAY 1 - PART 2: Implementing The FAIR-Principles - Planning Phase
+% ===================================================================
+
+% \include{d1p2}
+
+% ===================================================================
+% DAY 1 - PART 3: Integrating RDM in Research Operation
+% ===================================================================
+
+% \include{d1p3}
+
+% ===================================================================
+% DAY 2 - PART 4: Recording and Transforming Metadata, Serialisation
+% ===================================================================
+
+% \include{d2p4}
+
+% ===================================================================
+% DAY 2 - PART 5: Using Standards and Vocabularies
+% ===================================================================
+
+% \include{d2p5}
+
+% ===================================================================
+% DAY 2 - PART 6: Publish Metadata
+% ===================================================================
+
+% \include{d2p6}
+
+\end{document}

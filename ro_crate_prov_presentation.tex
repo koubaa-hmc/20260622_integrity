@@ -1,0 +1,225 @@
+\documentclass[aspectratio=169]{beamer}
+
+% --- PACKAGES ---
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{xcolor}
+\usepackage{tikz} % Needed for \tikz \path commands
+\usepackage{csquotes}
+\usepackage{listings}
+
+\usepackage[backend=biber, style=apa, doi=true]{biblatex}
+
+
+
+% 1. COLOR DEFINITIONS (KIT & HMC)
+\definecolor{KITBlue}{RGB}{0, 98, 148}
+\definecolor{HMCBlue}{RGB}{0, 40, 100}
+\definecolor{HMCAccent}{RGB}{20, 200, 255}
+\definecolor{HMCMint}{RGB}{5, 229, 186}
+\definecolor{HMCClaim}{RGB}{0, 128, 64}
+\definecolor{LightGray}{RGB}{242, 242, 242}
+\definecolor{VeryLightGray}{RGB}{252, 252, 252}
+
+
+% 2. THEME APPLICATION (Minimalist)
+\usefonttheme{professionalfonts}
+\useinnertheme{default}
+\useoutertheme{miniframes} % Minimalist header
+% \setbeamertemplate{navigation symbols}{} % No navigation symbols
+
+% Custom Footline Definition to insert the logo
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{
+    % Right box: Logo and Frame Number
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+      \raisebox{-0.5ex}{\includegraphics[width=10ex]{figs/hmc_logo.png}}| 
+      \usebeamerfont{date in head/foot}\insertframenumber\hspace*{8ex}
+    \end{beamercolorbox}}
+    \vskip1ex
+}
+
+% 3. BEAMER COLOR SCHEMES
+\setbeamercolor{palette primary}{fg=white, bg=HMCBlue}
+\setbeamercolor{section in head/foot}{fg=white, bg=HMCBlue}
+\setbeamercolor{palette secondary}{fg=white, bg=HMCAccent}
+\setbeamercolor{structure}{fg=HMCAccent}
+\setbeamercolor{local structure}{fg=HMCAccent}
+\setbeamercolor{title}{bg=HMCBlue, fg=LightGray}
+\setbeamercolor{frametitle}{fg=HMCBlue, bg=white}
+\setbeamercolor{block title}{fg=HMCClaim, bg=LightGray}
+\setbeamercolor{block body}{fg=HMCBlue, bg=VeryLightGray}
+\setbeamercolor{author in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{title in head/foot}{bg=white, fg=HMCBlue}
+\setbeamercolor{date in head/foot}{bg=white, fg=HMCBlue}
+
+% 4. FONT CONFIGURATION
+% (Requires Noto Sans to be installed on your system)
+%% \setmainfont{Noto Sans} 
+%% \setsansfont{Noto Sans}
+\lstdefinelanguage{XML}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={>}{{{\color{HMCAccent}>}}}1
+             {<}{{{\color{HMCAccent}<}}}1
+}
+\lstdefinelanguage{yaml}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+   % {  }{
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   %   \makebox[0.5em][l]{\colorbox{HMCMint}{\phantom{p}}}
+   % }{2}
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={"}{{{\texttt{\char34}}}}1
+             {,}{{{\color{HMCAccent},}}}1
+             {:}{{{\color{HMCAccent}:}}}1
+             {[}{{{\color{HMCAccent}{[}}}}1
+             {]}{{{\color{HMCAccent}{]}}}}1
+             {\{}{{{\color{HMCAccent}{\{}}}}1
+             {\}}{{{\color{HMCAccent}{\}}}}}1
+}
+\lstdefinelanguage{CSV}{
+    basicstyle=\ttfamily\tiny,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate={,}{{{\color{HMCAccent},}}}1
+    {;}{{{\color{HMCAccent};}}}1, 
+}
+
+% 5. Define the switch \ifenablepauses
+\newif\ifenablepauses
+% Set the default state
+\enablepausestrue           % (for animated presentation)
+\enablepausesfalse          % (for static presentation)
+
+
+
+\title{Enhancing Reproducibility with RO-Crate and PROV-O}
+\subtitle{Linking Entities for Verifiable Research Objects}
+\author{A. Koubaa}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Integrating RO-Crate and PROV-O}
+    \begin{itemize}
+        \item \textbf{RO-Crate:} A community-driven method for packaging research data with structured metadata (JSON-LD).
+        \item \textbf{PROV-O:} The W3C Provenance Ontology providing a model to map the origins of data.
+        \item \textbf{The Goal:} Use RO-Crate to store the "What" (data/tools) and PROV-O to describe the "How" (process/execution).
+    \end{itemize}
+    \vspace{0.3cm}
+    \begin{block}{Core PROV-O Relationships}
+        \begin{itemize}
+            \item \texttt{prov:Entity}: Data objects or software within the crate.
+            \item \texttt{prov:Activity}: The computation or manual step performed.
+            \item \texttt{prov:Agent}: The researcher or system responsible.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Linking Entities for Traceability}
+    To make operations verifiable, the RO-Crate \texttt{ro-crate-metadata.json} must link files to their execution context:
+    \vfill
+    \begin{enumerate}
+        \item \textbf{wasGeneratedBy}: Links a result file (\textit{Entity}) to a specific script run (\textit{Activity}).
+        \item \textbf{used}: Links the activity to its input datasets and parameter files.
+        \item \textbf{wasAssociatedWith}: Connects the activity to the \textit{Agent} (e.g., a KIT research fellow) or a software environment.
+    \end{enumerate}
+    \vfill
+    \textit{Benefit:} This graph allows a machine to traverse from a plot back to the exact version of the raw data and code used.
+\end{frame}
+
+\begin{frame}{Enabling Re-runnability and Parameterisation}
+    \begin{itemize}
+        \item \textbf{Verifiability:} Independent auditors can check if the \texttt{prov:Activity} outputs match the provided \texttt{prov:Entity}.
+        \item \textbf{Redoability:} By describing the \texttt{SoftwareApplication} as a \texttt{prov:Plan}, others can swap input entities.
+        \item \textbf{Parameter Tracking:} Store configuration files as \texttt{prov:Entity} linked via the \texttt{used} property.
+    \end{itemize}
+    \begin{exampleblock}{Workflow Logic}
+        If a researcher wants to test a new parameterisation, they identify the \texttt{Activity} in the RO-Crate, substitute the input \texttt{Entity}, and re-execute the linked \texttt{SoftwareSourceCode}.
+    \end{exampleblock}
+\end{frame}
+
+% --- SLIDE 4: Task-Based Semantic Framework ---
+\begin{frame}{Task-Based Semantic Framework}
+    \begin{itemize}
+        \item \textbf{Conceptual Mapping:} Research processes are broken down into logical \enquote{Tasks} that map to \texttt{prov:Activity}.
+        \item \textbf{Abstraction Levels:} Differentiates between a high-level scientific goal and the technical execution (scripts/tools).
+        \item \textbf{The Semantic Gap:} Bridging the gap between raw data files and the scientific intent behind their manipulation.
+    \end{itemize}
+    \vspace{0.2cm}
+    \begin{block}{Implementation Strategy}
+        Use the RO-Crate to define a \texttt{SoftwareSourceCode} as a \texttt{prov:Plan}. An \texttt{Activity} is then \textit{qualified} by this plan, ensuring that the operation is not just recorded, but described by its intended logic.
+    \end{block}
+\end{frame}
+
+% --- SLIDE 5: Automated vs. Manual Provenance ---
+\begin{frame}{Automated vs. Manual Provenance Implementation}
+    The framework addresses both \enquote{ideal} (automated) and \enquote{pragmatic} (manual) scenarios:
+    \vfill
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Automated (Ideal)}
+            \begin{itemize}
+                \item Tool-generated logs mapped to PROV-O.
+                \item Precise timestamps and PID-linked entities.
+                \item High granularity of parameters.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{Manual (Pragmatic)}
+            \begin{itemize}
+                \item Human-recorded task descriptions.
+                \item Linking \texttt{prov:Agent} (Researcher) to activities.
+                \item Capturing environment state via \enquote{Shadow Metadata}.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vfill
+    \begin{center}
+        \textit{Crucial for Reproducibility: Even a manual \enquote{Data Cleaning} task must be an entity-linked Activity.}
+    \end{center}
+\end{frame}
+
+% --- SLIDE 6: Verification & Executable Research Objects ---
+\begin{frame}{Verification \& Executable Research Objects}
+    By combining RO-Crate and PROV-O, the crate becomes a \textit{Self-Describing Research Object}:
+    \begin{itemize}
+        \item \textbf{Traceability:} One can traverse from a \texttt{prov:Entity} (Result) $\rightarrow$ \texttt{prov:Activity} (Operation) $\rightarrow$ \texttt{prov:Entity} (Input).
+        \item \textbf{Integrity:} Checksums in the RO-Crate ensure the entities used in the provenance graph haven't been tampered with.
+        \item \textbf{Verifiability:} Allows a KIT research fellow or external auditor to evaluate if the results are mathematically or logically consistent with the inputs.
+    \end{itemize}
+    \begin{exampleblock}{Conclusion}
+        Linking entities via PROV-O within an RO-Crate shifts research from \textit{archiving} to \textit{active documentation}, making complex operations redoable and verifiable.
+    \end{exampleblock}
+\end{frame}
+
+\end{document}
